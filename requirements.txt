@@ -1,0 +1,5 @@
+# Optional production adapters (server includes a pure-stdlib asyncio RFC 6455 fallback)
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+websockets>=13.0
+pytest>=8.3.0

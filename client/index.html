@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CollabSync — Real-Time Collaborative Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a href="/" class="brand">CollabSync</a>
+
+        <form id="room-form" class="room-controls" autocomplete="off">
+          <label class="field-group">
+            <span class="field-label">Room</span>
+            <input
+              id="room-input"
+              type="text"
+              value="workspace-alpha"
+              maxlength="64"
+              spellcheck="false"
+              aria-label="Room ID"
+            />
+          </label>
+          <label class="field-group">
+            <span class="field-label">Name</span>
+            <input
+              id="name-input"
+              type="text"
+              maxlength="32"
+              spellcheck="false"
+              aria-label="Display name"
+            />
+          </label>
+          <button type="submit" class="btn-secondary">Switch Room</button>
+        </form>
+
+        <div class="topbar-actions">
+          <button id="toggle-log-btn" type="button" class="btn-ghost">
+            Protocol Log
+          </button>
+          <a
+            id="new-tab-link"
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary"
+          >
+            Open Second Tab
+          </a>
+        </div>
+      </header>
+
+      <section class="workspace-meta" aria-label="Document status and participants">
+        <div class="meta-summary">
+          <span id="connection-status" class="conn-status conn-connecting">
+            <span class="conn-dot" aria-hidden="true"></span>
+            <span id="connection-text">Connecting</span>
+          </span>
+          <span class="sep" aria-hidden="true">·</span>
+          <span class="meta-item">Room <strong id="active-room-label">workspace-alpha</strong></span>
+          <span class="sep" aria-hidden="true">·</span>
+          <span class="meta-item mono tabular">Rev <strong id="revision-number">0</strong></span>
+          <span class="sep" aria-hidden="true">·</span>
+          <span id="sync-state-label" class="meta-item">Synced</span>
+          <span class="sep" aria-hidden="true">·</span>
+          <span id="doc-stats" class="meta-item mono tabular">0 lines · 0 chars</span>
+        </div>
+
+        <div id="participants-bar" class="participants-bar" aria-label="Active participants"></div>
+      </section>
+
+      <main class="workspace-main">
+        <section class="editor-panel" aria-label="Collaborative pad">
+          <div class="editor-container">
+            <div id="line-gutter" class="line-gutter mono tabular" aria-hidden="true">1</div>
+            <div class="editor-stage">
+              <div id="editor-mirror" class="editor-mirror mono" aria-hidden="true"></div>
+              <div id="cursor-overlay" class="cursor-overlay" aria-hidden="true"></div>
+              <textarea
+                id="editor"
+                class="editor-textarea mono"
+                spellcheck="false"
+                placeholder="Start typing to collaborate in real time across browser tabs..."
+                aria-label="Shared collaborative document"
+              ></textarea>
+            </div>
+          </div>
+        </section>
+
+        <aside id="protocol-drawer" class="protocol-drawer hidden" aria-label="WebSocket protocol log">
+          <div class="drawer-header">
+            <h2 class="drawer-title">Protocol Frames</h2>
+            <button id="clear-log-btn" type="button" class="btn-ghost btn-sm">Clear</button>
+          </div>
+          <div id="protocol-log" class="protocol-log mono"></div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

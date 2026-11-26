@@ -1,0 +1,6 @@
+{
+  "name": "CollabSync",
+  "description": "Multi-user real-time collaborative workspace with live cursor and presence awareness.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
